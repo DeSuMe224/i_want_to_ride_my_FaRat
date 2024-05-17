@@ -56,6 +56,7 @@ pub fn decide(game_state: GameState) -> Vec<PlayerAction> {
                 amount: game_state.config.base_levels[base.level as usize].spawn_rate,
             });
         }
+        println!("{:?}", target);
     }
     return attacks;
 }
