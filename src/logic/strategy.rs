@@ -19,7 +19,8 @@ pub fn decide(game_state: GameState) -> Vec<PlayerAction> {
     for base in own_bases {
         let mut target: Option<(Base, u32)> = None;
         for opponent in opponent_bases.clone() {
-            let req = base.required_to_defeat(&opponent, &game_state.actions, &game_state.config);
+            let mut req = base.required_to_defeat(&opponent, &game_state.actions, &game_state.config);
+            if opponent.uid == 0 {req -= 3}
             if req < base.population {
                 if let Some(target_some) = target {
                     if target_some.1 > req {
@@ -40,7 +41,7 @@ pub fn decide(game_state: GameState) -> Vec<PlayerAction> {
                     amount: target.1 + 1,
                 });
             }
-            else if base.population > game_state.config.base_levels[base.level as usize].max_population - 5 {
+            else if base.population > game_state.config.base_levels[base.level as usize].max_population -1 {
                 attacks.push(PlayerAction {
                     src: base.uid,
                     dest: base.uid,
@@ -48,7 +49,7 @@ pub fn decide(game_state: GameState) -> Vec<PlayerAction> {
                 });
             }
         }
-        else if base.population > game_state.config.base_levels[base.level as usize].max_population - 5 {
+        else if base.population > game_state.config.base_levels[base.level as usize].max_population -1 {
             attacks.push(PlayerAction {
                 src: base.uid,
                 dest: base.uid,
