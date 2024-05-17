@@ -20,7 +20,7 @@ pub fn decide(game_state: GameState) -> Vec<PlayerAction> {
         let mut target: Option<(Base, u32)> = None;
         for opponent in opponent_bases.clone() {
             let mut req = base.required_to_defeat(&opponent, &game_state.actions, &game_state.config);
-            if opponent.uid == 0 {req -= 3}
+            if opponent.uid == 0 {req -= 5}
             if req < base.population {
                 if let Some(target_some) = target {
                     if target_some.1 > req {
