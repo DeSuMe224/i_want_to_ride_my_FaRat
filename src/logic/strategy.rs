@@ -20,7 +20,7 @@ pub fn decide(game_state: GameState) -> Vec<PlayerAction> {
         let mut target: Option<(Base, u32)> = None;
         for opponent in opponent_bases.clone() {
             let mut req = base.required_to_defeat(&opponent, &game_state.actions, &game_state.config);
-            if req < base.population && base.population_in_n_ticks(base.distance_to(&opponent), &game_state.config, &game_state.actions) > 5 {
+            if req > 0 &&  req < base.population && base.population_in_n_ticks(base.distance_to(&opponent), &game_state.config, &game_state.actions) > 5 {
                 if let Some(target_some) = target {
                     if target_some.1 > req {
                         target = Some((opponent, req));
