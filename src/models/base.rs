@@ -31,7 +31,7 @@ impl Default for Base {
 impl Base {
     pub fn population_in_n_ticks(&self, ticks: u32, config: &GameConfig, attacks: &Vec<BoardAction>) -> u32 {
         let mut population_in_future: i32 = self.population as i32;
-        if self.uid != 0 { population_in_future + ticks as i32 * config.base_levels[self.level as usize].spawn_rate as i32; }
+        if self.uid != 0 { population_in_future += ticks as i32 * config.base_levels[self.level as usize].spawn_rate as i32; }
         for attack in attacks {
             if attack.arrival_in_ticks() > ticks {
                 let val_on_target: i32 = attack.amount_at_target(&config.paths) as i32;
