@@ -54,10 +54,10 @@ impl Base {
         let mut pop = base.population_in_n_ticks(d, game_config, attacks);
 
         if base.uid == 0 && base.level == 4 {
-            pop = 0;
+            pop = 1;
         }
         else {
-            pop += 1;
+            pop += 3;
         }
 
         if d < game_config.paths.grace_period {return pop}
