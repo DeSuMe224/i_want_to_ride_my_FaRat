@@ -1,9 +1,7 @@
 use crate::models::position::Position;
 use serde::Deserialize;
-use crate::models::base_level::BaseLevel;
 use crate::models::board_action::BoardAction;
 use crate::models::game_config::GameConfig;
-use crate::models::player_action::PlayerAction;
 
 #[derive(Deserialize, Debug, PartialEq, Eq, PartialOrd, Ord, Clone, Copy)]
 pub struct Base {
