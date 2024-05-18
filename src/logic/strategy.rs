@@ -20,7 +20,7 @@ pub fn decide(game_state: GameState) -> Vec<PlayerAction> {
         let mut target: Option<(Base, u32)> = None;
         for opponent in opponent_bases.clone() {
             let req = base.required_to_defeat(&opponent, &game_state.actions, &game_state.config);
-            if req > 0 &&  req < base.population && base.population_in_n_ticks(base.distance_to(&opponent), &game_state.config, &game_state.actions) > 5 {
+            if req > 0 && req < base.population && base.population_in_n_ticks(base.distance_to(&opponent), &game_state.config, &game_state.actions) > 5 {
                 if let Some(target_some) = target {
                     if (target_some.1 >= req && target_some.0.distance_to(&base) > opponent.distance_to(&base)) || ((target_some.0.uid != 0 && base.uid == 0) && opponent.distance_to(&base) < 10 && target_some.0.distance_to(&base) > opponent.distance_to(&base)) {
                         target = Some((opponent, req));
@@ -33,11 +33,11 @@ pub fn decide(game_state: GameState) -> Vec<PlayerAction> {
         }
 
         if let Some(target) = target {
-            if base.population_in_n_ticks(base.distance_to(&target.0), &game_state.config, &game_state.actions) > target.1 + 5 * game_state.config.paths.death_rate + 1 {
+            if base.population_in_n_ticks(base.distance_to(&target.0), &game_state.config, &game_state.actions) > target.1 + 3 * game_state.config.paths.death_rate + 1 {
                 attacks.push(PlayerAction {
                     src: base.uid,
                     dest: target.0.uid,
-                    amount: target.1 + 5 * game_state.config.paths.death_rate,
+                    amount: target.1 + 3 * game_state.config.paths.death_rate,
                 });
             }
             else if base.population > game_state.config.base_levels[base.level as usize].max_population -1 {
