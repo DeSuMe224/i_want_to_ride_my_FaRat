@@ -43,7 +43,7 @@ impl Base {
                 }
             }
         }
-        if population_in_future < 0 {return 0;}
+        if population_in_future < 0 {return 1_000_000_000;}
         return population_in_future as u32;
     }
 
