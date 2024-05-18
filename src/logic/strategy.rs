@@ -33,11 +33,11 @@ pub fn decide(game_state: GameState) -> Vec<PlayerAction> {
         }
 
         if let Some(target) = target {
-            if base.population_in_n_ticks(base.distance_to(&target.0), &game_state.config, &game_state.actions) > target.1 + 3 {
+            if base.population_in_n_ticks(base.distance_to(&target.0), &game_state.config, &game_state.actions) > target.1 5 * game_state.config.paths.death_rate + 1 {
                 attacks.push(PlayerAction {
                     src: base.uid,
                     dest: target.0.uid,
-                    amount: target.1 + 2,
+                    amount: target.1 + 5 * game_state.config.paths.death_rate,
                 });
             }
             else if base.population > game_state.config.base_levels[base.level as usize].max_population -1 {
