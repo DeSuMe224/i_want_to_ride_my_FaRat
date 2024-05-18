@@ -45,7 +45,7 @@ impl Base {
     }
 
     pub fn distance_to(&self, base: &Base) -> u32 {
-        return (((base.position.x - self.position.x).pow(2) - (base.position.y - self.position.y).pow(2) - (base.position.z - self.position.z).pow(2)) as f64).powf(1.0 / 3.0) as u32;
+        return (((base.position.x - self.position.x).pow(2) + (base.position.y - self.position.y).pow(2) + (base.position.z - self.position.z).pow(2)) as f64).powf(1.0 / 3.0) as u32;
     }
 
     pub fn required_to_defeat(&self, base: &Base, attacks: &Vec<BoardAction>, game_config: &GameConfig) -> u32 {
