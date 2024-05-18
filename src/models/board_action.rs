@@ -1,7 +1,6 @@
 use crate::models::progress::Progress;
 use serde::Deserialize;
 use uuid::Uuid;
-use crate::models::game_config::GameConfig;
 use crate::models::path_config::PathConfig;
 
 #[derive(Deserialize, Debug, PartialEq, Eq, Clone, Copy)]

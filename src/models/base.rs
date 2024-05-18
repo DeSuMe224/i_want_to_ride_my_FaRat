@@ -43,8 +43,7 @@ impl Base {
                 }
             }
         }
-        if population_in_future < 0 {return 3;}
-        return population_in_future as u32;
+        return population_in_future.abs() as u32;
     }
 
     pub fn distance_to(&self, base: &Base) -> u32 {
@@ -60,7 +59,7 @@ impl Base {
             pop = 1;
         }
         else {
-            pop += 3
+            pop += 3;
         }
 
         if d < game_config.paths.grace_period {return pop}
