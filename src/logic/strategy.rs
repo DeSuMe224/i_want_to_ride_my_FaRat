@@ -22,7 +22,7 @@ pub fn decide(game_state: GameState) -> Vec<PlayerAction> {
             let req = base.required_to_defeat(&opponent, &game_state.actions, &game_state.config);
             if req > 0 &&  req < base.population && base.population_in_n_ticks(base.distance_to(&opponent), &game_state.config, &game_state.actions) > 5 {
                 if let Some(target_some) = target {
-                    if target_some.1 > req || (target_some.1 >= req && target_some.0.distance_to(&base) > opponent.distance_to(&base)) || ((target_some.0.uid != 0 && base.uid == 0) && target_some.0.distance_to(&base) > opponent.distance_to(&base)) {
+                    if (target_some.1 >= req && target_some.0.distance_to(&base) > opponent.distance_to(&base)) || ((target_some.0.uid != 0 && base.uid == 0) && target_some.0.distance_to(&base) > opponent.distance_to(&base)) {
                         target = Some((opponent, req));
                     }
                 }
