@@ -54,7 +54,11 @@ impl Base {
     pub fn required_to_defeat(&self, base: &Base, attacks: &Vec<BoardAction>, game_config: &GameConfig) -> u32 {
         let d: u32 = self.distance_to(base);
 
-        let pop = base.population_in_n_ticks(d, game_config, attacks);
+        let mut pop = base.population_in_n_ticks(d, game_config, attacks);
+
+        if base.uid == 0 && base.level == 4 {
+            pop = 5;
+        }
 
         if d < game_config.paths.grace_period {return pop}
 
