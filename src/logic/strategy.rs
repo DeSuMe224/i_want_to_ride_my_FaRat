@@ -44,7 +44,7 @@ pub fn decide(game_state: GameState) -> Vec<PlayerAction> {
                 attacks.push(PlayerAction {
                     src: base.uid,
                     dest: base.uid,
-                    amount: game_state.config.base_levels[base.level as usize].spawn_rate,
+                    amount: game_state.config.base_levels[base.level as usize].max_population - base.population,
                 });
             }
         }
@@ -52,7 +52,7 @@ pub fn decide(game_state: GameState) -> Vec<PlayerAction> {
             attacks.push(PlayerAction {
                 src: base.uid,
                 dest: base.uid,
-                amount: game_state.config.base_levels[base.level as usize].spawn_rate,
+                amount: game_state.config.base_levels[base.level as usize].max_population - base.population,
             });
         }
         println!("{:?}", target);
